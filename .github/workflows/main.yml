@@ -29,17 +29,9 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       # Runs a single command using the runners shell
       - name: SSH
-        run: ssh -i key $SSH_USER@$SSH_HOST -p $SSH_PORT
+        run: ssh -i key $SSH_USER@$SSH_HOST -p $SSH_PORT "sudo su && cd cd $DEPLOY_PATH && git pull origin master"
         env:
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PORT: ${{ secrets.SSH_PORT }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
-      # Runs a set of commands using the runners shell
-      - name: sudo su
-        run: sudo su
-      - name: cd
-        run: cd $DEPLOY_PATH
-        env:
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
-      - name: git pull
-        run: git pull
