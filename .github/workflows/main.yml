@@ -29,7 +29,7 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       # Runs a single command using the runners shell
       - name: SSH
-        run: ssh -i key $SSH_USER@$SSH_HOST -p SSH_PORT
+        run: ssh -i key $SSH_USER@$SSH_HOST -p $SSH_PORT
         env:
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PORT: ${{ secrets.SSH_PORT }}
